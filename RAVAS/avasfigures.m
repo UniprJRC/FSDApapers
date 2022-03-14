@@ -5,7 +5,9 @@
 %
 % The file is organized in Sections. Each Section produces the code to
 % generate a particular figure.
-
+%
+% REMARK: This code assumes toolbox FSDA version >=8.5.23 has abeen
+% installed and that MATLAB>=2021a is running
 
 %% Ex1 (seven outliers).
 rng('default')
@@ -59,7 +61,7 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-
+% The instruction below is just to print the figure to an eps file.
 prin=0;
 if prin==1
     % print to postscript
@@ -366,6 +368,8 @@ if prin==1
     print -depsc figs\WM1.eps;
 end
 
+close(findobj('type','figure','Tag','pl_heatmap'));
+
 %% Example from Wang and Murphy: extract best solution
 close all
 j=1;
@@ -470,6 +474,9 @@ Xq=[X(:,1:2) X(:,1).^2 X(:,2).^2 X(:,1).*X(:,2)];
 [VALtfin,CorrMat]=avasms(y,Xq,'l',3*ones(size(Xq,2),1),...
     'critBestSol',0.01,'maxBestSol',2);
 disp(VALtfin)
+
+% heatmap figure is automatically produced so it is closed
+close(findobj('type','figure','Tag','pl_heatmap'));
 
 if prin==1
     % print to postscript
