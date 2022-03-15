@@ -6,7 +6,7 @@
 % The file is organized in Sections. Each Section produces the code to
 % generate a particular figure.
 %
-% REMARK: This code assumes toolbox FSDA version >=8.5.23 has abeen
+% REMARK: This code assumes toolbox FSDA version >=8.5.23 has been
 % installed and that MATLAB>=2021a is running
 
 %% Ex1 (seven outliers).
@@ -61,12 +61,6 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-% The instruction below is just to print the figure to an eps file.
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\ex1TRAD.eps;
-end
 
 %% Ex1: all options set to true
 out=avas(y,x,'rob',true,'tyinitial',true,...
@@ -113,11 +107,6 @@ if addout ==true
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
 
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\ex1ROB.eps;
-end
 
 %% Two variable model
 rng(30)
@@ -162,12 +151,6 @@ if addout ==true
 end
 
 
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\tyinitial1.eps;
-end
-
 %% Two variable model: scail set to true
 out=avas(y,X,'rob',false,'tyinitial',false,...
     'scail',true,'orderR2',false,'trapezoid',false);
@@ -204,11 +187,6 @@ if addout ==true
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
 
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\tyinitial2.eps;
-end
 
 %% Two variable model: tyinitial true and scail true
 close all
@@ -249,9 +227,6 @@ if addout ==true
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
 
-if prin==1
-    print -depsc figs\tyinitial3.eps;
-end
 
 
 %% Two variable model: all options set to true
@@ -265,9 +240,6 @@ out=avas(y,X,'rob',true,'tyinitial',tyinitial,...
 aceplot(out,'oneplot',true)
 disp(out)
 
-if prin==1
-    print -depsc figs\tyinitial4.eps;
-end
 
 %% Example 2: 4 explanatory variables
 clear
@@ -284,11 +256,7 @@ y=exp(y);
 %% Example 2: automatic model selection create figure 7
 [VALtfin,~]=avasms(y,X);
 disp(VALtfin)
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\glyph1.eps;
-end
+
 
 %% Example 2: all options set to false, create Figure 8
 close all
@@ -296,10 +264,7 @@ out=avas(y,X,'rob',false,'tyinitial',false,...
     'scail',false,'orderR2',false,'trapezoid',false);
 aceplot(out,'oneplot',true)
 disp(out)
-if prin==1
-    % print to postscript
-    print -depsc figs\glyph1bis.eps;
-end
+
 
 %%  Example 2: all options set to true
 out=avas(y,X,'rob',true,'tyinitial',true,...
@@ -336,11 +301,7 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\glyph1tris.eps;
-end
+
 
 %% Example from Wang and Murphy: generate the data
 close all
@@ -363,10 +324,6 @@ y([121 80 34 188 137 110 79 86 1])=1.9+randn(9,1)*0.01;
 % Automatic model selection
 close all
 [VALtfinchk,Resarraychk]=avasms(y,X);
-if prin==1
-    % print to postscript
-    print -depsc figs\WM1.eps;
-end
 
 close(findobj('type','figure','Tag','pl_heatmap'));
 
@@ -408,22 +365,12 @@ if addout ==true
     plot(yhat(highlight),res(highlight),'ro','MarkerFaceColor','r')
 end
 
-if prin==1
-    % print to postscript
-    print -depsc figs\WM2.eps;
-end
 
 %% Example from Wang and Murphy: create Figure 12
 % tXj against Xj for j=1, 2, 3 and 4.
 close all
 aceplot(out)
 close(findobj('type','figure','Tag','pl_ty'));
-
-if prin==1
-    % print to postscript
-    print -depsc figs\WM3.eps;
-end
-
 
 %%  Marketing data
 % https://www.kaggle.com/fayejavad/marketing-linear-multiple-regression
@@ -442,11 +389,7 @@ fitlm(X,y)
 out=avas(y,X,'rob',false,'tyinitial',false,'orderR2',false,...
     'scail',false,'trapezoid',false','l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
-prin=0;
-if prin==1
-    % print to postscript
-    print -depsc figs\MD1.eps;
-end
+
 
 %% Marketing data: regression model based on transformed data using all options set to false
 % find F-value
@@ -457,11 +400,6 @@ fitlm(out.tX,out.ty)
 close all
 out=avas(y,X,'trapezoid',true,'rob',true,'tyinitial',true,'orderR2',true,'scail',true,'l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
-
-if prin==1
-    % print to postscript
-    print -depsc figs\MD2.eps;
-end
 
 %% Marketing data: regression model based on transformed data using all options set to true
 % find F value
@@ -478,10 +416,6 @@ disp(VALtfin)
 % heatmap figure is automatically produced so it is closed
 close(findobj('type','figure','Tag','pl_heatmap'));
 
-if prin==1
-    % print to postscript
-    print -depsc figs\MD3.eps;
-end
 
 %% Marketing data: show details of best solution, create Figure 16
 close all
@@ -489,10 +423,6 @@ j=1;
 outj=VALtfin{j,"Out"};
 solj=outj{:};
 aceplot(solj,'oneplot',true)
-if prin==1
-    % print to postscript
-    print -depsc figs\MD4.eps;
-end
 
 % Regression model on the transformed scale
 outjr=fitlm(solj.tX,solj.ty,'Exclude',solj.outliers);
@@ -508,7 +438,3 @@ fitlm(out.tX,out.ty,'Exclude','')
 close all
 % In the paper just the two top panels have been shown
 aceplot(out,'oneplot',true)
-if prin==1
-    % print to postscript
-    print -depsc figs\MD5.eps;
-end
