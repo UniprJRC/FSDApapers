@@ -61,6 +61,8 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name',['Figure 1: Example 1 (seven outliers). ...' ...
+    'Standard non robust analysis ...'])
 
 %% Ex1: all options set to true
 out=avas(y,x,'rob',true,'tyinitial',true,...
@@ -106,7 +108,8 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-
+set(gcf,'NumberTitle','off','Name',['Figure 2: Example 1. Robust analysis. Top left ' ...
+    'panel, transformed y against y ...'])
 
 %% Two variable model
 rng(30)
@@ -149,6 +152,9 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name',['Figure 3: Two variable model. Non robust ' ...
+    'analysis without options...'])
+
 
 
 %% Two variable model: scail set to true
@@ -186,6 +192,8 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name',['Figure 4: Two variable model. Non robust ' ...
+    'analysis with option scail...'])
 
 
 %% Two variable model: tyinitial true and scail true
@@ -226,6 +234,8 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name',['Figure 5: Two variable model. Non robust ' ...
+    'analysis with option scail and tyinitial ...'])
 
 
 
@@ -239,6 +249,8 @@ out=avas(y,X,'rob',true,'tyinitial',tyinitial,...
 %% Two variable model: create figure 6
 aceplot(out,'oneplot',true)
 disp(out)
+set(gcf,'NumberTitle','off','Name',['Figure 6: Two variable model. Robust ' ...
+    'with all options ...'])
 
 
 %% Example 2: 4 explanatory variables
@@ -253,9 +265,13 @@ X=[x1 X24];
 y=exp(y);
 
 
-%% Example 2: automatic model selection create figure 7
+%% Example 2: automatic model selection create Figure 7
+close all
 [VALtfin,~]=avasms(y,X);
 disp(VALtfin)
+close(findobj('type','figure','Tag','pl_heatmap'));
+set(gcf,'NumberTitle','off','Name','Figure 7: Example 2. Augmented start plot of options ...')
+
 
 
 %% Example 2: all options set to false, create Figure 8
@@ -264,9 +280,10 @@ out=avas(y,X,'rob',false,'tyinitial',false,...
     'scail',false,'orderR2',false,'trapezoid',false);
 aceplot(out,'oneplot',true)
 disp(out)
+set(gcf,'NumberTitle','off','Name','Figure 8: Example 2. Non robust analysis. ...')
 
 
-%%  Example 2: all options set to true
+%% Example 2: all options set to true
 out=avas(y,X,'rob',true,'tyinitial',true,...
     'scail',true,'orderR2',true,'trapezoid',true);
 
@@ -301,6 +318,7 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name','Figure 9: Robust analysis with all options. ...')
 
 
 %% Example from Wang and Murphy: generate the data
@@ -326,6 +344,8 @@ close all
 [VALtfinchk,Resarraychk]=avasms(y,X);
 
 close(findobj('type','figure','Tag','pl_heatmap'));
+set(gcf,'NumberTitle','off','Name',['Figure 10: Example from Wang and Murphy. Augmented' ...
+    ' star plot ...'])
 
 %% Example from Wang and Murphy: extract best solution
 close all
@@ -364,6 +384,8 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),res(highlight),'ro','MarkerFaceColor','r')
 end
+set(gcf,'NumberTitle','off','Name',['Figure 11: Example from Wang and Murphy. Left' ...
+    ' hand panel, transformed y against y ...'])
 
 
 %% Example from Wang and Murphy: create Figure 12
@@ -371,6 +393,9 @@ end
 close all
 aceplot(out)
 close(findobj('type','figure','Tag','pl_ty'));
+
+set(gcf,'NumberTitle','off','Name',['Figure 12: Example from Wang and Murphy. Transformation' ...
+    ' of the four explanatory variables ...'])
 
 %%  Marketing data
 % https://www.kaggle.com/fayejavad/marketing-linear-multiple-regression
@@ -390,6 +415,8 @@ out=avas(y,X,'rob',false,'tyinitial',false,'orderR2',false,...
     'scail',false,'trapezoid',false','l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
 
+set(gcf,'NumberTitle','off','Name',['Figure 13: Marketing data. Standard' ...
+    ' non robust analysis without options ...'])
 
 %% Marketing data: regression model based on transformed data using all options set to false
 % find F-value
@@ -400,6 +427,9 @@ fitlm(out.tX,out.ty)
 close all
 out=avas(y,X,'trapezoid',true,'rob',true,'tyinitial',true,'orderR2',true,'scail',true,'l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
+
+set(gcf,'NumberTitle','off','Name',['Figure 14: MArketing data. RAVAS analysis' ...
+    ' with all options ...'])
 
 %% Marketing data: regression model based on transformed data using all options set to true
 % find F value
@@ -416,6 +446,8 @@ disp(VALtfin)
 % heatmap figure is automatically produced so it is closed
 close(findobj('type','figure','Tag','pl_heatmap'));
 
+set(gcf,'NumberTitle','off','Name',['Figure 15: Marketing data' ...
+    ' Augmented star plot...'])
 
 %% Marketing data: show details of best solution, create Figure 16
 close all
@@ -424,9 +456,13 @@ outj=VALtfin{j,"Out"};
 solj=outj{:};
 aceplot(solj,'oneplot',true)
 
+set(gcf,'NumberTitle','off','Name',['Figure 16: Marketing data' ...
+    ' quadratic model...'])
+
 % Regression model on the transformed scale
 outjr=fitlm(solj.tX,solj.ty,'Exclude',solj.outliers);
 
+disp(outjr)
 %% Marketing data: quadratic model all options set to false
 out=avas(y,Xq,'l',3*ones(size(Xq,2),1));
 fitlm(out.tX,out.ty,'Exclude','')
@@ -438,3 +474,6 @@ fitlm(out.tX,out.ty,'Exclude','')
 close all
 % In the paper just the two top panels have been shown
 aceplot(out,'oneplot',true)
+
+set(gcf,'NumberTitle','off','Name',['Figure 17: quadratic model' ...
+    ' Standard non robust analysis without options...'])
