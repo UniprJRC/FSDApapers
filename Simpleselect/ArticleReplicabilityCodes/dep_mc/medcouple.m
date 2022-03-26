@@ -163,7 +163,7 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
     k  = 1.5;
 
     % limits on normal data + one outlier
-    MC_1  = medm(datain1);
+    MC_1  = medcouple(datain1);
     Q1_1  = quantile(datain1,0.25);
     Q3_1  = quantile(datain1,0.75);
     IQR_1 = Q3_1 - Q1_1;
@@ -171,7 +171,7 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
     DataLimUpper_1 = Q3_1 + k * exp(4 * MC_1)    * IQR_1;
 
     % limits on log-normal data + one outlier
-    MC_2  = medm(datain2);
+    MC_2  = medcouple(datain2);
     Q1_2  = quantile(datain2,0.25);
     Q3_2  = quantile(datain2,0.75);
     IQR_2 = Q3_2 - Q1_2;
@@ -240,41 +240,41 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
         % just to ensure that data are stored in a column vector
         datain = datain(:);
 
-        % $n\log n$, using whimed (which is based on MATLAB sortrows)
+        % $n\log n$, using Haase's weighted median (which is based on MATLAB sortrows)
         tw0 = tic;
-        [MCw , t_whimed] = medm(datain,0,0);
+        [MCw , t_Haase] = medcouple(datain,0,0);
         tw  = tw+toc(tw0);
 
         % $n\log n$, using quickselectFSw
         tm0 = tic;
-        [MCm , t_diva] = medm(datain,0,1);
+        [MCm , t_diva] = medcouple(datain,0,1);
         tm  = tm+toc(tm0);
 
 
         % $n^2$ "naive" algorithm, simplified
         ts0 = tic;
-        MCs = medm(datain,1);
+        MCs = medcouple(datain,1);
         ts  = ts+toc(ts0);
 
         % Quantiles-based approximation
         to0 = tic;
-        MCo = medm(datain,2);
+        MCo = medcouple(datain,2);
         to  = to+toc(to0);
 
         % Octiles-based approximation
         tq0 = tic;
-        MCq = medm(datain,3);
+        MCq = medcouple(datain,3);
         tq  = tq+toc(tq0);
 
     end
 
     disp(' ');
     disp('OVERALL TIME EXECUTION')
-    disp(['time using whimed   = ' num2str(tw) ' -- time using quickselectFSw = ' num2str(tm) ' -- time using the naive = ' num2str(ts)]);
-    disp(['time using quntiles = ' num2str(tq) ' -- time using octiles        = ' num2str(to)]);
+    disp(['time using WM by Haase = ' num2str(tw) ' -- time using quickselectFSw = ' num2str(tm) ' -- time using the naive = ' num2str(ts)]);
+    disp(['time using quantiles   = ' num2str(tq) ' -- time using octiles        = ' num2str(to)]);
     disp(' ');
     disp('TIME SPENT IN COMPUTING WEIGHTED AVERAGES')
-    disp(['t_whimed = ' num2str(t_whimed) ' -- t_quickselectFSw = ' num2str(t_diva) ]);
+    disp(['t_Haase = ' num2str(t_Haase) ' -- t_quickselectFSw = ' num2str(t_diva) ]);
 
 %}
 
@@ -314,7 +314,7 @@ switch mcm
         % Uses quickselectFS for median and quickselectFSw for weighted median
         
         % used to estimate time execution of the weighted median
-        t_whimed=0; t_diva=0;
+        t_Haase=0; t_diva=0;
         
         % initializations
         y = zeros(n,1);
@@ -438,7 +438,7 @@ switch mcm
                 % It is a O(n log(n)) algorithm (uses sortrows).
                 t           = tic();
                 [~ , trial] = weightedMedianHaase(work_jm1,weight_jm1);
-                t_whimed    = t_whimed+toc(t);
+                t_Haase    = t_Haase+toc(t);
             elseif wmm ==1
                 % Use the weighted median implementation of FSDA. 
                 % It is a O(n) algorithm.
@@ -446,7 +446,7 @@ switch mcm
                 trial     = quickselectFSw(work_jm1,weight_jm1,0.5);
                 t_diva    = t_diva+toc(tt);
             else
-                % quickselectFSw mex ... Optimezed
+                % quickselectFSw mex ... Optimized
                 ttt = tic;
                 work_copy = work_jm1;   work_copy(end+1)=999; work_copy(end)=[]; %#ok<AGROW>
                 weig_copy = weight_jm1; weig_copy(end+1)=999; weig_copy(end)=[]; %#ok<AGROW>
@@ -553,7 +553,7 @@ switch mcm
         % provided for assessment purposes.
         if nargout==2
             if wmm==0
-                varargout={t_whimed};
+                varargout={t_Haase};
             else
                 varargout={t_diva};
             end
@@ -763,7 +763,6 @@ else
 end
 
 end
-
 
 
 
