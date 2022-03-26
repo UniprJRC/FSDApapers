@@ -30,11 +30,11 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
 %          Data Types - single | double
 %
 %    wmm : Scalar. Weighted Median Method. By default (wmm=0 or not specified)
-%          the weighted median is computed using the whimed.m function
+%          the weighted median is computed using function quickselectFSw,
+%          which csn compute any weighted quantile. If wmm=0 the weighted
+%          median is computed using the algorithm by Sven Haase
 %          https://it.mathworks.com/matlabcentral/fileexchange/23077-weighted-median
-%          by Sven Haase. If wmm=1 the weighted median is computed using
-%          the more general FSDA function quickselectFSw, which returns any
-%          desired weighted order statistic.
+%          Option wmm=2 applies the mex file quickselectFSwmex.
 %          Example - 'wmm',1
 %          Data Types - single | double
 %
@@ -215,7 +215,7 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
 
     % Tm=matlab-fast-quickselectFSw; Tw=matlab-fast-whimed
     % Ts=matlab-simplified; To=matlab-octile; Tq=matlab-quantiles;
-    tm=0; tw=0; ts=0; to = 0; tq=0;
+    tm=0; tmmex=0; tw=0; ts=0; to = 0; tq=0;
 
     N      = 800;   % sample size
     cycles = 1000;  % number of repetitions
@@ -240,16 +240,20 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
         % just to ensure that data are stored in a column vector
         datain = datain(:);
 
-        % $n\log n$, using Haase's weighted median (which is based on MATLAB sortrows)
-        tw0 = tic;
-        [MCw , t_Haase] = medcouple(datain,0,0);
-        tw  = tw+toc(tw0);
-
         % $n\log n$, using quickselectFSw
         tm0 = tic;
-        [MCm , t_diva] = medcouple(datain,0,1);
+        [MCm , t_diva] = medcouple(datain,0,0);
         tm  = tm+toc(tm0);
 
+        % $n\log n$, using quickselectFSwmex
+        tm0mex = tic;
+        [MCmmex , t_diva_mex] = medcouple(datain,0,2);
+        tmmex  = tmmex+toc(tm0mex);
+
+        % $n\log n$, using Haase's weighted median (which is based on MATLAB sortrows)
+        tw0 = tic;
+        [MCw , t_Haase] = medcouple(datain,0,1);
+        tw  = tw+toc(tw0);
 
         % $n^2$ "naive" algorithm, simplified
         ts0 = tic;
@@ -269,13 +273,18 @@ function [medout , varargout] = medcouple(z, mcm, wmm)
     end
 
     disp(' ');
-    disp('OVERALL TIME EXECUTION')
-    disp(['time using WM by Haase = ' num2str(tw) ' -- time using quickselectFSw = ' num2str(tm) ' -- time using the naive = ' num2str(ts)]);
-    disp(['time using quantiles   = ' num2str(tq) ' -- time using octiles        = ' num2str(to)]);
+    disp(['OVERALL TIME EXECUTION IN ' num2str(cycles) ' MC COMPUTATION']);
+    disp(['time using WM by Haase       = ' num2str(tw)]);
+    disp(['time using quickselectFSw    = ' num2str(tm)]);
+    disp(['time using quickselectFSwmex = ' num2str(tmmex)]);
+    disp(['time using the naive         = ' num2str(ts)]);
+    disp(['time using quantiles         = ' num2str(tq)]);
+    disp(['time using octiles           = ' num2str(to)]);
     disp(' ');
-    disp('TIME SPENT IN COMPUTING WEIGHTED AVERAGES')
-    disp(['t_Haase = ' num2str(t_Haase) ' -- t_quickselectFSw = ' num2str(t_diva) ]);
-
+    disp('TIME SPENT IN COMPUTING WEIGHTED AVERAGES IN A SINGLE MC COMPUTATION')
+    disp(['t_Haase             = ' num2str(t_Haase)]);
+    disp(['t_quickselectFSw    = ' num2str(t_diva)]);
+    disp(['t_quickselectFSwmex = ' num2str(t_diva_mex)]);
 %}
 
 %% preliminaries
@@ -434,17 +443,17 @@ switch mcm
             % Data
             work_jm1     = work(1:j-1);
             if wmm == 0
-                % Use the weighted median implementation by Sven Haase
-                % It is a O(n log(n)) algorithm (uses sortrows).
-                t           = tic();
-                [~ , trial] = weightedMedianHaase(work_jm1,weight_jm1);
-                t_Haase    = t_Haase+toc(t);
-            elseif wmm ==1
                 % Use the weighted median implementation of FSDA. 
                 % It is a O(n) algorithm.
                 tt        = tic();
                 trial     = quickselectFSw(work_jm1,weight_jm1,0.5);
                 t_diva    = t_diva+toc(tt);
+            elseif wmm == 1
+                % Use the weighted median implementation by Sven Haase
+                % It is a O(n log(n)) algorithm (uses sortrows).
+                t           = tic();
+                [~ , trial] = weightedMedianHaase(work_jm1,weight_jm1);
+                t_Haase    = t_Haase+toc(t);
             else
                 % quickselectFSw mex ... Optimized
                 ttt = tic;
@@ -552,7 +561,7 @@ switch mcm
         % computation, which is the expensive part of the algorithm. It is
         % provided for assessment purposes.
         if nargout==2
-            if wmm==0
+            if wmm==1
                 varargout={t_Haase};
             else
                 varargout={t_diva};
