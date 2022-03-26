@@ -10,6 +10,8 @@ function [kD , kW , kstar, varargout]  = quickselectFSw(D,W,p)
 % that make the following difference as small as possible:
 % $\sum_{i=1}^{k^{*}_{p} - 1} w_{i} - \sum_{i=k^{*}_{p}+1}^{n} w_{i}$.
 % The linear algorithm used for the computation extends quickselectFS.
+% REMARK: we also provide the mex counterpart, quickselectFSwmex; see the
+% last example to understand how it works. 
 %
 %  Required input arguments:
 %
@@ -191,6 +193,39 @@ function [kD , kW , kstar, varargout]  = quickselectFSw(D,W,p)
     else
         disp('optimal obj is unique');
     end
+%}
+
+
+%{
+    %% Use the mex function quickselectFSwmex.
+    % REMARK 1: it is necessary to pass the number of data elements.
+    % REMARK 2: it is necessary to pass a modified copy of the data and 
+    % weight arrays as indicated in the example, as the function change the
+    % order of the elements in the original arrays (variables are passed by
+    % reference).
+
+    N = 10000;
+    D=randperm(N);
+    W = abs(randn(N,1));
+    W = W/sum(W);
+
+    p = 0.5;
+    [wm , ww , kstar, wdSort]  = quickselectFSw(D,W,p);
+
+    % The next two lines are necessary to break the link between D and the
+    % copy which will be passed by reference to quickselectFSwmex
+    D_copy = D; D_copy(end+1)=999; D_copy(end)=[]; 
+    W_copy = W; W_copy(end+1)=999; W_copy(end)=[]; 
+    wm_mex = quickselectFSwmex(D_copy,W_copy,0.5,N);
+
+    disp('  ');
+    disp(['this is wm      = ' num2str(wm)]);
+    disp(['this is wm_mex  = ' num2str(wm_mex)]);
+
+    % if zero, the sorted arrays are equal. 
+    sum(W_copy    - wdSort(:,2))
+    sum(D_copy(:) - wdSort(:,1))
+
 %}
 
 %% Beginning of code

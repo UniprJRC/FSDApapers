@@ -261,8 +261,8 @@ for n = nSet
         % quickselectFS mex ... Optimezed
         tic;
         %SIMPLEselect(Acopy,n,k-1);
-        quickselectFSmex(Acopy,n,k-1);
-        quickselectFSmexOut = Acopy(k);
+        %quickselectFSmexOut = Acopy(k);
+        quickselectFSmexOut = quickselectFSmex(Acopy,n,k-1);
         TimeQuickselectFSmextemp(i)=toc;
         % ATTENTION... now also Acopy is modified!
         
