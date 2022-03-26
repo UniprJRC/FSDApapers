@@ -64,21 +64,19 @@ for c = 1:R
     
     % $n\log n$, using whimed (which is based on MATLAB sortrows)
     tw0 = tic();
-    [MCw , t_whimed] = medcouple(datain, 0, 0);
+    [MCw , t_whimed] = medcouple(datain, 0, 1);
     tw(c)  = toc(tw0);
     
-    %f_whimed = @() medcouple(datain, 0, 0);
+    %f_whimed = @() medcouple(datain, 0, 1);
     %tw2(c) = timeit(f_whimed);
     
     % $n\log n$, using quickselectFSw
     tm0a = tic();
-    [MCma , ta_diva] = medcouple(datain, 0, 1); % jit
-    %[MCmb , tb_diva] = medcouple(datain, 0, 2); % mex
+    [MCma , ta_diva] = medcouple(datain, 0, 0); % jit
     tma(c)  = toc(tm0a);
     
     % $n\log n$, using quickselectFSw
     tm0b = tic();
-    %[MCma , ta_diva] = medcouple(datain, 0, 1); % jit
     [MCmb , tb_diva] = medcouple(datain, 0, 2); % mex
     tmb(c)  = toc(tm0b);
 
