@@ -12,6 +12,8 @@
 % - vervaatsim.m        (dep_fsda folder)
 % - vervaatxdf.m        (dep_fsda folder) 
 % 
+% The documentation in html files is under folder doc_html.
+%
 % To replicate the results in the paper you can run the examples in the 
 % following functions, located in the root folder:
 % - Figure1_NumberOfElemtaryOperation.m
