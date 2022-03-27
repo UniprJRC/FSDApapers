@@ -98,7 +98,7 @@ function [kE , varargout] = quickselectFS(A,k,kiniindex)
 %}
 
 %{
-    %% quickselectFS: worst case scenario: see circshift
+    %% quickselectFS: worst case scenario: see circshift.
     n=10;
     Y=1:n;
     Y = circshift(Y,-1);
@@ -108,7 +108,7 @@ function [kE , varargout] = quickselectFS(A,k,kiniindex)
 %}
 
 %{
-    %% Use the mex function quickselectFSmex.
+    % Use the mex function quickselectFSmex.
     % REMARK 1: it is necessary to pass the number of data elements.
     % REMARK 2: if you are looking for the order statistic k, then you
     % should pass to the function k-1, as in C the array index starts from
