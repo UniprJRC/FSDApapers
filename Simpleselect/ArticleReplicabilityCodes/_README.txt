@@ -1,9 +1,9 @@
 % This folder relates to the paper:
-% "A practically efficient and extensible fixed-pivot selection algorithm".
+% "﻿A practically efficient fixed-pivot selection algorithm and its extensible MATLAB suite".
 % It contains the new functions discussed in the paper and the code to
-% reproduce the results reported in the figures and the tables.
-% 
-% The new functions are:
+% reproduce the results reported in the figures and the table.
+%
+% The novel functions are:
 % - quickselectFS.m     (root folder)
 % - quickselectFSw.m    (root folder)
 % - quickselectFSmex.c  (dep_mex folder)
@@ -12,10 +12,9 @@
 % - vervaatsim.m        (dep_fsda folder)
 % - vervaatxdf.m        (dep_fsda folder) 
 % 
-% The documentation in html files is under folder doc_html.
+% To replicate the results you can run the examples that are at the head
+% of the following functions, located in the root folder:
 %
-% To replicate the results in the paper you can run the examples in the 
-% following functions, located in the root folder:
 % - Figure1_NumberOfElemtaryOperation.m
 % - Figure3_ComputationalTime.m
 % - Figure4_FSM_MCD_TIME_testing.m
@@ -23,9 +22,11 @@
 % - Figure5_W_check_position.m
 % - Figure5_W_check_time.m
 % - Table1_medc_test.m
-% 
-% Please run addDEP2path to add to the MATLAB path all dependencies, which
+%
+% To run the examples, it is necessary to execute first the function  
+% addDEP2path, which adds to the MATLAB path all dependencies, which
 % are in the folders:
+%
 % - dep_mex:     includes the C-functions and the mex-files compiled for
 %                macos and windows.
 % - dep_robstat: includes the MCD and FS functions, modified to monitor the
@@ -38,5 +39,12 @@
 %                from the FSDA toolbox, which can be downloaded from:
 %                https://github.com/UniprJRC
 %                https://it.mathworks.com/matlabcentral/fileexchange/72999-fsda
-                
+%
+% The documentation in html files is under folder doc_html.
+%
+% There are also two demo functions, which disply the execution of the algorithms.
+% 
+% - quickselectFS_demo.m
+% - quickselectFSw_demo.m
+
 
