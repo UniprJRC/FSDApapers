@@ -46,5 +46,9 @@
 % 
 % - quickselectFS_demo.m
 % - quickselectFSw_demo.m
-
-
+%
+% Finally, folder rep_C_R contains functions to test in C and R the use of
+% quickselectFS and quickselectFSw. The C-functions, quickselectFS.c and
+% quickselectFSw.c, can be tested in any platform after compiling main.c in
+% an executable. The R-functions, quickselectFS.R and quickselectFSw.R, can
+% be tested in R by running mainDemo.R. The MATLAB-equivalent is mainDemo.m. 
