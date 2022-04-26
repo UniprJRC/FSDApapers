@@ -1,14 +1,16 @@
 //  mersenne.h
-//  test_mc
 //
-// The code is taken from:
+// This is a C-program for MT19937 (with initialization improved 2002/1/26, 
+// MT19937ar) coded by Takuji Nishimura & Makoto Matsumoto. It is taken from:
 // http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/MT2002/CODES/mt19937ar.c
 //
 // The key references for the methodology are:
+//
 //     Matsumoto, M. and Nishimura, T. (2000), Mersenne Twister: A
 //     623-Dimensionally Equidistributed Uniform Pseudorandom Number
 //     Generator, "ACM Transactions on Modeling and Computer Simulation",
 //     Vol. 8, pp. 3-30.
+//
 //     Marsaglia, G. and Tsang, W.W. (2000), The ziggurat method for generating
 //     random variables, "Journal of Statistical Software", Vol. 5, pp. 1-7.
 
