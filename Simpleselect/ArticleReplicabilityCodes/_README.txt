@@ -23,6 +23,7 @@
 % - Figure5_W_check_obj.m
 % - Figure5_W_check_position.m
 % - Figure5_W_check_time.m
+% - Figure6_weighted_median_filter.m
 % - Table1_medc_test.m
 %
 % They contain few introductory lines and the examples that reproduce the 
