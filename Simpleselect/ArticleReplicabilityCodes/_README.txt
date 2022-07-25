@@ -17,7 +17,8 @@
 % 
 % The functions and script used to replicate the results in the paper are:
 %
-% - Figure1_NumberOfElemtaryOperation.m
+% - Figure1_SimpleselectWorstCase.m
+% - Figure2_NumberOfElemtaryOperation.m
 % - Figure3_ComputationalTime.m
 % - Figure4_FSM_MCD_TIME_testing.m
 % - Figure5_W_check_obj.m

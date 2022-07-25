@@ -1,4 +1,4 @@
-function [numOp] = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat)
+function [numOp] = Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat)
 
 %% This script is used to check the distributional properties of the operations in simpleselect
 %  The main distribution checked is the DIckman
@@ -65,13 +65,13 @@ function [numOp] = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kS
      pdfName = 'unif';
       
      Repetitions = 1000; 
-     numOp1000worst   =   Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+     numOp1000worst   =   Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
      Repetitions = 10000; 
-     numOp100000worst =   Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+     numOp100000worst =   Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
 
      SaveWhat    = 'average';
      Repetitions = 1000; 
-     numOp1000average =   Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+     numOp1000average =   Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
 
      figure;
 
@@ -120,8 +120,8 @@ function [numOp] = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kS
     CountWhat = 2;      % Comparisons only
     SaveWhat  = 'all';  % Save all counts in numOp
 
-    numOp   = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
-    numOp50 = Figure1_NumberOfElemtaryOperation(50,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+    numOp   = Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+    numOp50 = Figure2_NumberOfElemtaryOperation(50,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
 
     figure;
     h1 = histogram(numOp/nSet, 100, 'Normalization', 'pdf');
@@ -155,7 +155,7 @@ function [numOp] = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kS
 
     CountWhat = 5;      % Swaps only
 
-    numOp = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+    numOp = Figure2_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
     figure;
     h1 = histogram(numOp/nSet, 'Normalization', 'pdf','DisplayStyle','stairs');
 %}
@@ -175,13 +175,13 @@ function [numOp] = Figure1_NumberOfElemtaryOperation(nSet,Repetitions,pdfName,kS
     CountWhat = 5;      % Swaps only
     SaveWhat  = 'all';  % Save all counts in numOp
 
-    numOp = Figure1_NumberOfElemtaryOperation(nMax,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+    numOp = Figure2_NumberOfElemtaryOperation(nMax,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
     figure;
     h2 = histogram(numOp/nMax, 100, 'Normalization', 'pdf','DisplayStyle','stairs');
 
     figure;
     for n=nMin:step:nMax
-        numOp = Figure1_NumberOfElemtaryOperation(n,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
+        numOp = Figure2_NumberOfElemtaryOperation(n,Repetitions,pdfName,kSet,CountWhat,SaveWhat);
         [hist_values,hist_edges] = histcounts(numOp/n, 'Normalization', 'probability');
         hist_centers = (hist_edges(1:end-1)+hist_edges(2:end))/2;
         positives = hist_values > 0;
