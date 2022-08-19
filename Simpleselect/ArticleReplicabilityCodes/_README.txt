@@ -54,6 +54,8 @@
 % - The R-functions, quickselectFS.R and quickselectFSw.R, can be tested 
 %   in R by running mainDemo.R. 
 % - The MATLAB-equivalent is mainDemo.m. 
+% - The Python script mainDemo.py shows how to call a compiled version of 
+%   quickselectFS.c from python.
 %
 % Finally, we provide two demo functions that display the execution of 
 % the algorithms in a didactical form.
