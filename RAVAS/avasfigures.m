@@ -1,15 +1,11 @@
-%% This file contains the code to create all the figures shown in the paper
-% "Robust Transformations for Multiple Regression via Additivity and
-% Variance Stabilization" by
-% Marco Riani, Anthony C. Atkinson and Aldo Corbellini (2022)
-%
-% The file is organized in Sections. Each Section produces the code to
-% generate a particular figure.
-%
-% REMARK: This code assumes toolbox FSDA version >=8.5.23 has been
-% installed and that MATLAB>=2021a is running
+%% The code below assumes that MATLAB and FSDA toolbox has been installed.
+% In order to get FSDA toolbox from MATLAB
+% Home|Add-Ons|Get Add-Ons and in the 
+% Add-On Explorer Window, in the Search for add-ons textbox type FSDA
+
 
 %% Ex1 (seven outliers).
+
 rng('default')
 rng(1000)
 x = (0:0.1:15)';
@@ -23,6 +19,7 @@ out=avas(y,x,'rob',false,'tyinitial',false,...
     'orderR2',false,'scail',false,'trapezoid',false);
 
 %% Create Figure1 (non robust analysis)
+close all
 tX=out.tX;
 ty=out.ty;
 % Top left-hand panel, transformed y against y; top right-hand panel, transformed
@@ -61,8 +58,12 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 1: Example 1 (seven outliers). ...' ...
-    'Standard non robust analysis ...'])
+
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\ex1TRAD.eps;
+end
 
 %% Ex1: all options set to true
 out=avas(y,x,'rob',true,'tyinitial',true,...
@@ -108,10 +109,14 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 2: Example 1. Robust analysis. Top left ' ...
-    'panel, transformed y against y ...'])
 
-%% Two variable model
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\ex1ROB.eps;
+end
+
+%% Two variable model (section 5.2)
 rng(30)
 x2 = (0:0.01:1.5)';
 n=length(x2);
@@ -152,10 +157,13 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 3: Two variable model. Non robust ' ...
-    'analysis without options...'])
 
 
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\tyinitial1.eps;
+end
 
 %% Two variable model: scail set to true
 out=avas(y,X,'rob',false,'tyinitial',false,...
@@ -192,9 +200,12 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 4: Two variable model. Non robust ' ...
-    'analysis with option scail...'])
 
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\tyinitial2.eps;
+end
 
 %% Two variable model: tyinitial true and scail true
 close all
@@ -234,9 +245,10 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),ty(highlight),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 5: Two variable model. Non robust ' ...
-    'analysis with option scail and tyinitial ...'])
 
+if prin==1
+    print -depsc figs\tyinitial3.eps;
+end
 
 
 %% Two variable model: all options set to true
@@ -249,9 +261,10 @@ out=avas(y,X,'rob',true,'tyinitial',tyinitial,...
 %% Two variable model: create figure 6
 aceplot(out,'oneplot',true)
 disp(out)
-set(gcf,'NumberTitle','off','Name',['Figure 6: Two variable model. Robust ' ...
-    'with all options ...'])
 
+if prin==1
+    print -depsc figs\tyinitial4.eps;
+end
 
 %% Example 2: 4 explanatory variables
 clear
@@ -265,14 +278,14 @@ X=[x1 X24];
 y=exp(y);
 
 
-%% Example 2: automatic model selection create Figure 7
-close all
+%% Example 2: automatic model selection create figure 7
 [VALtfin,~]=avasms(y,X);
 disp(VALtfin)
-close(findobj('type','figure','Tag','pl_heatmap'));
-set(gcf,'NumberTitle','off','Name','Figure 7: Example 2. Augmented start plot of options ...')
-
-
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\glyph1.eps;
+end
 
 %% Example 2: all options set to false, create Figure 8
 close all
@@ -280,10 +293,12 @@ out=avas(y,X,'rob',false,'tyinitial',false,...
     'scail',false,'orderR2',false,'trapezoid',false);
 aceplot(out,'oneplot',true)
 disp(out)
-set(gcf,'NumberTitle','off','Name','Figure 8: Example 2. Non robust analysis. ...')
+if prin==1
+    % print to postscript
+    print -depsc figs\glyph1bis.eps;
+end
 
-
-%% Example 2: all options set to true
+%%  Example 2: all options set to true
 out=avas(y,X,'rob',true,'tyinitial',true,...
     'scail',true,'orderR2',true,'trapezoid',true);
 
@@ -318,8 +333,11 @@ if addout ==true
     hold('on')
     plot(X(highlight,j),tX(highlight,j),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name','Figure 9: Robust analysis with all options. ...')
-
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\glyph1tris.eps;
+end
 
 %% Example from Wang and Murphy: generate the data
 close all
@@ -341,11 +359,12 @@ y([121 80 34 188 137 110 79 86 1])=1.9+randn(9,1)*0.01;
 %% Example from Wang and Murphy: create Figure 10 
 % Automatic model selection
 close all
-[VALtfinchk,Resarraychk]=avasms(y,X);
-
-close(findobj('type','figure','Tag','pl_heatmap'));
-set(gcf,'NumberTitle','off','Name',['Figure 10: Example from Wang and Murphy. Augmented' ...
-    ' star plot ...'])
+[VALtfinchk,Resarraychk]=avasms(y,X,'plots',0);
+avasmsplot(VALtfinchk,'showBars',true)
+if prin==1
+    % print to postscript
+    print -depsc figs\WM1.eps;
+end
 
 %% Example from Wang and Murphy: extract best solution
 close all
@@ -384,9 +403,11 @@ if addout ==true
     hold('on')
     plot(yhat(highlight),res(highlight),'ro','MarkerFaceColor','r')
 end
-set(gcf,'NumberTitle','off','Name',['Figure 11: Example from Wang and Murphy. Left' ...
-    ' hand panel, transformed y against y ...'])
 
+if prin==1
+    % print to postscript
+    print -depsc figs\WM2.eps;
+end
 
 %% Example from Wang and Murphy: create Figure 12
 % tXj against Xj for j=1, 2, 3 and 4.
@@ -394,8 +415,11 @@ close all
 aceplot(out)
 close(findobj('type','figure','Tag','pl_ty'));
 
-set(gcf,'NumberTitle','off','Name',['Figure 12: Example from Wang and Murphy. Transformation' ...
-    ' of the four explanatory variables ...'])
+if prin==1
+    % print to postscript
+    print -depsc figs\WM3.eps;
+end
+
 
 %%  Marketing data
 % https://www.kaggle.com/fayejavad/marketing-linear-multiple-regression
@@ -414,9 +438,11 @@ fitlm(X,y)
 out=avas(y,X,'rob',false,'tyinitial',false,'orderR2',false,...
     'scail',false,'trapezoid',false','l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
-
-set(gcf,'NumberTitle','off','Name',['Figure 13: Marketing data. Standard' ...
-    ' non robust analysis without options ...'])
+prin=0;
+if prin==1
+    % print to postscript
+    print -depsc figs\MD1.eps;
+end
 
 %% Marketing data: regression model based on transformed data using all options set to false
 % find F-value
@@ -428,8 +454,10 @@ close all
 out=avas(y,X,'trapezoid',true,'rob',true,'tyinitial',true,'orderR2',true,'scail',true,'l',3*ones(size(X,2),1));
 aceplot(out,'oneplot',true)
 
-set(gcf,'NumberTitle','off','Name',['Figure 14: MArketing data. RAVAS analysis' ...
-    ' with all options ...'])
+if prin==1
+    % print to postscript
+    print -depsc figs\MD2.eps;
+end
 
 %% Marketing data: regression model based on transformed data using all options set to true
 % find F value
@@ -440,29 +468,30 @@ fitlm(out.tX,out.ty,'Exclude',out.outliers)
 close all
 Xq=[X(:,1:2) X(:,1).^2 X(:,2).^2 X(:,1).*X(:,2)];
 [VALtfin,CorrMat]=avasms(y,Xq,'l',3*ones(size(Xq,2),1),...
-    'critBestSol',0.01,'maxBestSol',2);
+    'critBestSol',0.03,'maxBestSol',4);
+avasmsplot(VALtfin)
 disp(VALtfin)
 
-% heatmap figure is automatically produced so it is closed
-close(findobj('type','figure','Tag','pl_heatmap'));
-
-set(gcf,'NumberTitle','off','Name',['Figure 15: Marketing data' ...
-    ' Augmented star plot...'])
+if prin==1
+    % print to postscript
+    print -depsc figs\MD3.eps;
+end
 
 %% Marketing data: show details of best solution, create Figure 16
 close all
 j=1;
 outj=VALtfin{j,"Out"};
 solj=outj{:};
-aceplot(solj,'oneplot',true)
-
-set(gcf,'NumberTitle','off','Name',['Figure 16: Marketing data' ...
-    ' quadratic model...'])
+VarNames={'X_1' 'X_2' 'X_1^2' 'X_2^2' 'X_1X_2' 'y'};
+aceplot(solj,'oneplot',true,'VarNames',VarNames)
+if prin==1
+    % print to postscript
+    print -depsc figs\MD4.eps;
+end
 
 % Regression model on the transformed scale
-outjr=fitlm(solj.tX,solj.ty,'Exclude',solj.outliers);
+outjr=fitlm(solj.tX,solj.ty,'Exclude',solj.outliers,'VarNames',VarNames);
 
-disp(outjr)
 %% Marketing data: quadratic model all options set to false
 out=avas(y,Xq,'l',3*ones(size(Xq,2),1));
 fitlm(out.tX,out.ty,'Exclude','')
@@ -474,6 +503,7 @@ fitlm(out.tX,out.ty,'Exclude','')
 close all
 % In the paper just the two top panels have been shown
 aceplot(out,'oneplot',true)
-
-set(gcf,'NumberTitle','off','Name',['Figure 17: quadratic model' ...
-    ' Standard non robust analysis without options...'])
+if prin==1
+    % print to postscript
+    print -depsc figs\MD5.eps;
+end
