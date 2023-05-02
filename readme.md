@@ -22,7 +22,7 @@ Link to [github page](https://github.com/UniprJRC/FSDApapers)
 Riani, M., Atkinson, A.C. & Corbellini, A. Automatic robust Box–Cox and extended Yeo–Johnson transformations in regression. Stat Methods Appl 32, 75–102 (2023). https://doi.org/10.1007/s10260-022-00640-7
 
 Folder RAC2022
-Link to [github page](https://github.com/UniprJRC/FSDApapers/RAC2022)
+Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAC2022)
 
 ---
 
