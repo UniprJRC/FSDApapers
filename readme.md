@@ -18,7 +18,7 @@ Anthony C. Atkinson, Marco Riani, Aldo Corbellini, (2021), "The Box–Cox Transf
 https://doi.org/10.1214/20-STS778.
 
 Folder ARC2021
-Link to [github page](https://github.com/UniprJRC/FSDApapers)
+Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/ARC2021)
 
 ---
 Riani, M., Atkinson, A.C. & Corbellini, A. Automatic robust Box–Cox and extended Yeo–Johnson transformations in regression. Stat Methods Appl 32, 75–102 (2023). https://doi.org/10.1007/s10260-022-00640-7
