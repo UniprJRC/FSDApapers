@@ -9,14 +9,16 @@
 
 This project hosts the source code to the papers which make use of the FSDA toolbox.
 
+
+Anthony C. Atkinson, Marco Riani, Aldo Corbellini, (2020), "The Analysis of Transformations for Profit-and-Loss Data", Journal of the Royal Statistical Society Series C: Applied Statistics, Volume 69, Issue 2, Pages 251–275, https://doi.org/10.1111/rssc.12389
+Folder 
+
 ---
 Anthony C. Atkinson, Marco Riani, Aldo Corbellini, (2021), "The Box–Cox Transformation: Review and Extensions." Statistical Science Vol. 36,  pp. 239 - 255,  
 https://doi.org/10.1214/20-STS778.
 
 Folder ARC2021
 Link to [github page](https://github.com/UniprJRC/FSDApapers)
-
----
 
 ---
 Riani, M., Atkinson, A.C. & Corbellini, A. Automatic robust Box–Cox and extended Yeo–Johnson transformations in regression. Stat Methods Appl 32, 75–102 (2023). https://doi.org/10.1007/s10260-022-00640-7
