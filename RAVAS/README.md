@@ -1,6 +1,5 @@
 
-# The Box-Cox Transformation: Review and Extensions
-
+# Robust Transformations for Multiple Regression via Additivity and Variance Stabilization
 ---
 Marco Riani, Anthony C. Atkinson & Aldo Corbellini (2023) Robust Transformations for Multiple Regression via Additivity and Variance Stabilization, Journal of Computational and Graphical Statistics, DOI: 10.1080/10618600.2023.2205447
 

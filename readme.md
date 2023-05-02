@@ -11,6 +11,7 @@ This project hosts the source code to the papers which make use of the FSDA tool
 
 
 Anthony C. Atkinson, Marco Riani, Aldo Corbellini, (2020), "The Analysis of Transformations for Profit-and-Loss Data", Journal of the Royal Statistical Society Series C: Applied Statistics, Volume 69, Issue 2, Pages 251–275, https://doi.org/10.1111/rssc.12389
+
 Folder ARC2020
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/ARC2020)
 
