@@ -1,5 +1,5 @@
 %% Data reading
-XX=xlsread('BalanceSheets.xlsx');
+XX=load('BalanceSheets.txt');
 % Define X and y
 yori=XX(:,6);
 X=XX(:,1:5);
@@ -195,6 +195,7 @@ MLfit_notout = fitlm(X,ytra,'Exclude',out.outliers);
 
 
 %% Brushing  (FIGURE 12)
+disp('THIS SECTION REQUIRES USER INTERACTION')
 n=length(yori);
 [out]=LXS(ytra,X);
 [out]=FSReda(ytra,X,out.bs);
