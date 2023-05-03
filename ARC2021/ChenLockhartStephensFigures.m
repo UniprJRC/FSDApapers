@@ -1,3 +1,5 @@
+clear
+close all
 %% Analyze ChenLockhartStephens data (gasoline data)
 % Read original matrix
 XX=load('gasoline.txt');

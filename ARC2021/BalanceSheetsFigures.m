@@ -16,7 +16,7 @@ ytra(~booneg)=ypos;
 outpn=FSRfan(ytra,X,'intercept',1,'plots',0,'family','YJpn','la',1);
 
 %% Brushing linked plots
-
+disp('THIS SECTION REQUIRES USER INTERACTION')
 n=length(yori);
 [out]=LXS(ytra,X);
 [out]=FSReda(ytra,X,out.bs);

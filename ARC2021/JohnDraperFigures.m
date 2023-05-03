@@ -1,3 +1,5 @@
+clear 
+close all
 %% Figures for John and Draper data
 % Read original matrix
 XX= load('JohnDraper.txt');
@@ -75,7 +77,7 @@ end
 
 
 fitlm(X,out.ty)
-%% Create JD4 (ace)
+%% Create JD4 (aceplot)
 p=size(X,2);
 l=[5*ones(p,1); 1];
 out= ace(y,X,'l',l);
