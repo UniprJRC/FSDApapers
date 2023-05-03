@@ -36,3 +36,11 @@ Folder RAVAS
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAVAS)
 
 
+---
+Marco Riani, Anthony C. Atkinson, Francesca Torti, Aldo Corbellini, Robust Correspondence Analysis, Journal of the Royal Statistical Society Series C: Applied Statistics, Volume 71, Issue 5, November 2022, Pages 1381–1401, https://doi.org/10.1111/rssc.12580
+
+Folder RATC
+Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RATC)
+
+---
+
