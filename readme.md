@@ -23,7 +23,7 @@ Folder ARC2021
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/ARC2021)
 
 ---
-Riani, M., Atkinson, A.C. & Corbellini, A. Automatic robust Box–Cox and extended Yeo–Johnson transformations in regression (2023), Stat Methods Appl, Volume 32, pp. 75–102. https://doi.org/10.1007/s10260-022-00640-7
+Marco Riani, Anthony C. Atkinson,  Aldo Corbellini (2023), A. Automatic robust Box–Cox and extended Yeo–Johnson transformations in regression (2023), Stat Methods Appl, Volume 32, pp. 75–102. https://doi.org/10.1007/s10260-022-00640-7
 
 Folder RAC2022
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAC2022)
@@ -36,7 +36,7 @@ Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RATC)
 
 ---
 
-Riani, M., Atkinson, A.C. & Corbellini, A. Robust Transformations for Multiple Regression via Additivity and Variance Stabilization (2023), Journal of Computational and Graphical Statistics. https://doi.org/10.1080/10618600.2023.2205447
+Marco Riani, Anthony C. Atkinson, Francesca Torti, Aldo Corbellini (2023), Robust Transformations for Multiple Regression via Additivity and Variance Stabilization, Journal of Computational and Graphical Statistics. https://doi.org/10.1080/10618600.2023.2205447
 
 Folder RAVAS
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAVAS)
