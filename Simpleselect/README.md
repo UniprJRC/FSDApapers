@@ -13,4 +13,4 @@ We provide the new functions in \textsf{MATLAB}, \textsf{C} and R. We have packa
 # MATLAB Code
 
 The code which generates all the figures can be found [here](Simpleselect/ArticleReplicabilityCodes).
-The description of the files needed to replicate the code is in the [_README.txt] (https://github.com/UniprJRC/FSDApapers/blob/main/Simpleselect/ArticleReplicabilityCodes/_README.txt)
+The description of the files needed to replicate the figures is in https://github.com/UniprJRC/FSDApapers/blob/main/Simpleselect/ArticleReplicabilityCodes/_README.txt
