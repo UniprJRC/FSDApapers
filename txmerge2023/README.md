@@ -1,7 +1,7 @@
 
-# Tk-Merge: Fast and robust clustering of general-shaped structures with tk-merge.
+# Fast and robust clustering of general-shaped structures with tk-merge.
 
-Insolia, L., Perrotta, D. (2023). Tk-Merge: Computationally Efficient Robust Clustering Under General Assumptions.
+Insolia, L., Perrotta, D. (2023). Fast and robust clustering of general-shaped structures with tk-merge.
 
 # Abstract
 
