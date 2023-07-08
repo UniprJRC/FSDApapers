@@ -46,7 +46,7 @@ Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAVAS)
 Ivano Azzini, Domenico Perrotta, Francesca Torti (2023), A practically efficient fixed-pivot selection algorithm and its extensible MATLAB suite. ArXiv, https://doi.org/10.48550/arXiv.2302.05705
 
 Folder Simplesect
-Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/Simleselect)
+Link to [github page]([https://github.com/UniprJRC/FSDApapers/tree/main/Simleselect])
 
 ---
 
