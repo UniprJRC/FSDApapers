@@ -2,7 +2,7 @@ library("seasonal")
 library("forecast")
 
 # Import data
-data <- read.csv("data_sanctions_KZ.csv",header=T)
+data <- read.csv("P87_KZ.csv",header=T)
 Y <- data$Y
 rm(data)
 

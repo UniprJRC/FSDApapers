@@ -1,7 +1,7 @@
 %%%% Simulation study of Section 3.3.2.
 
 % Import data 
-data = readtable("data_sanctions_KZ.csv");
+data = readtable("P87_KZ.csv");
 Y = data.Y;
 clear data;
 

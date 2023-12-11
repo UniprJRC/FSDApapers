@@ -9,7 +9,7 @@ lshiftloc = struct;
 lshiftloc.wlength = 5;
 
 % Belarus 
-BY = readtable("data_sanctions_BY.csv");
+BY = readtable("P87_BY.csv");
 
 pos_TLS = find(ischange(BY.Y,'mean','MaxNumChanges',1));
 model.lshift = max((pos_TLS-5),10):min((pos_TLS+5),size(BY,1)-10);
@@ -27,7 +27,7 @@ ylabel('Belarus', 'FontSize', 15)
 xtickangle(30)
 
 % Kazakhstan 
-KZ = readtable("data_sanctions_KZ.csv");
+KZ = readtable("P87_KZ.csv");
 
 pos_TLS = find(ischange(KZ.Y,'mean','MaxNumChanges',1));
 model.lshift = max((pos_TLS-5),10):min((pos_TLS+5),size(KZ,1)-10);
