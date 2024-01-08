@@ -11,7 +11,7 @@ nfore = size(Y,1)-n;
 reps = 10; % number of repetitions
 
 model=struct;
-model.s=54;
+model.s=52;
 model.trend=1;
 model.seasonal=101;
 model.lshift=-1;

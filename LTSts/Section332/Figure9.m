@@ -2,7 +2,7 @@
 
 model=struct;
 model.trend=1;
-model.s=54;
+model.s=52;
 model.seasonal=101;
 
 lshiftloc = struct;
