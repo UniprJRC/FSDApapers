@@ -8,7 +8,7 @@ model.seasonal=101;
 lshiftloc = struct;
 lshiftloc.wlength = 5;
 
-% Belarus 
+% Belarus
 BY = readtable("P87_BY.csv");
 
 pos_TLS = find(ischange(BY.Y,'mean','MaxNumChanges',1));
@@ -26,7 +26,7 @@ plot(BY.WEEK(outBY.outliers),BY.Y(outBY.outliers),'rx','LineWidth',1)
 ylabel('Belarus', 'FontSize', 15)
 xtickangle(30)
 
-% Kazakhstan 
+% Kazakhstan
 KZ = readtable("P87_KZ.csv");
 
 pos_TLS = find(ischange(KZ.Y,'mean','MaxNumChanges',1));

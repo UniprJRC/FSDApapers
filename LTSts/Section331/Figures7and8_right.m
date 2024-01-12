@@ -1,7 +1,8 @@
 %% data load
-data = load('/Users/tortifr/articles_and_conferences/2023_JRSS_C/data_plot_articolo_serie_storiche2022/PK1207409000');
-y=table2array(data.PK1207409000(:,2));
-T = data.PK1207409000(:,1);
+load TTsesame
+
+y=sesame.yQPK;
+T=sesame.time;
 n=length(y);
 
 %% detection of multiple LS 
@@ -30,7 +31,7 @@ end
 xlabel('');
 ylabel('Pakistan')
 xticks([1 5 10 15 20 25 length(y)])
-xticklabels({char(T.WEEK(1)),char(T.WEEK(5)),char(T.WEEK(10)),char(T.WEEK(15)),char(T.WEEK(20)),char(T.WEEK(25)),char(T.WEEK(end))})
+xticklabels({char(T(1)),char(T(5)),char(T(10)),char(T(15)),char(T(20)),char(T(25)),char(T(end))})
 
 %% variable selection, given the multiple LS 
 %% Right panel of Figure 8 of the paper 
@@ -54,4 +55,4 @@ xlim([-1 length(y)+1])
 ylabel('Pakistan')
 title('')
 xticks([1 5 10 15 20 25 length(y)])
-xticklabels({char(T.WEEK(1)),char(T.WEEK(5)),char(T.WEEK(10)),char(T.WEEK(15)),char(T.WEEK(20)),char(T.WEEK(25)),char(T.WEEK(end))})
+xticklabels({char(T(1)),char(T(5)),char(T(10)),char(T(15)),char(T(20)),char(T(25)),char(T(end))})

@@ -1,6 +1,6 @@
 %%%% Figure 2 of Section 3.1
 
-load TTsalmon.mat
+load TTsalmon
 
 foreMonths = 12;
 numObs = length(salmon.yP)-foreMonths;
