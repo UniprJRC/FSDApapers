@@ -1,12 +1,13 @@
 %% Data reading
 XX=load('BalanceSheets.txt');
 % Define X and y
-yori=XX(:,6);
+y=XX(:,6);
 X=XX(:,1:5);
 
-%% Produce original yXplot
-yXplot(yori,X)
+%% Produce original yXplot (Figure 11)
+yXplot(y,X)
 legend('off')
+sgtitle('Figure 11')
 prin=0;
 if prin==1
     % print to postscript
@@ -14,171 +15,38 @@ if prin==1
 end
 
 
-%% Prepare data for Figure 10 (fan plot)
+%% Create upper panel of  Figure 12 (fan plot)
 ylimy=20;
 nini=1000;
 la=[0.5 0.75 1 1.25];
-out=FSRfan(yori,X,'la',la,'family','YJ','plots',0,'init',round(nini/2),'ylimy',[-ylimy ylimy]);
+out=FSRfan(y,X,'la',la,'family','YJ','plots',0,'init',round(nini/2),'ylimy',[-ylimy ylimy]);
+fanplotFS(out)
 
-% pos and neg for 1
+%% Create lower panel for Figure 12 (pos and neg for 1)
 lasel=1;
 ylimy1=5;
-outpn=FSRfan(yori,X,'la',lasel,'family','YJpn','plots',0,'init',round(nini/2),'ylimy',[-ylimy1 ylimy1]);
-
-%% Create high quality figure 10
-la=[0.5 0.75 1 1.25];
-lasel=1;
-FontSizeO=12;
+outpn=FSRfan(y,X,'la',lasel,'family','YJpn','plots',1,'init',round(nini/2),'ylimy',[-ylimy1 ylimy1]);
 
 
-nr=2;
-nc=1;
-xlim1=500;
-
-% Upper panel
-subplot(nr,nc,1)
-Sco=out.Score;
-n=length(yori);
-xlim2=n+3;
-
-% plot the lines associated with the score test lwd = line width of the
-% trajectories which contain the score test
-lla=length(la);
-lwd=2;
-lwdenv=2;
-plot1=plot(Sco(:,1),Sco(:,2:end),'LineWidth',lwd);
-
-% Specify the line type for the units inside vector units
-slin={':';'--';'-';'-.'};
-slin=repmat(slin,ceil(lla/4),1);
-
-% Specify the color for the trajectories
-ColorOrd=[{[1 0 1]}; {[0 0 0]}; {[0 0 1]};{[0 1 1]}; {[0 1 0]}; {[0.6 0.6 0.6]}; {[0 1 0]}; ];
-ColorOrd=repmat(ColorOrd,4,1);
-
-set(plot1,{'Color'}, ColorOrd(1:lla,:));
-
-set(plot1,{'LineStyle'},slin(1:lla));
-
-v=axis;
-conflev=0.99;
-quant=sqrt(chi2inv(conflev,1));
-line([v(1),v(2)],[quant,quant],'color','r','LineWidth',lwdenv);
-line([v(1),v(2)],[-quant,-quant],'color','r','LineWidth',lwdenv);
-
-if size(la,2)>1
-    la=la';
-end
-hordisp=100;
-text((n-hordisp)*ones(lla,1)+1,Sco(end-hordisp,2:end)'+1,num2str(la),'FontSize',14);
-xlim([xlim1 xlim2])
-ylim([-20 20])
-set(gca,'FontSize',FontSizeO)
-
-% Lower panel
-subplot(nr,nc,2)
-Sco=outpn.Score;
-n=length(yori);
-la=lasel;
-% plot the lines associated with the score test lwd = line width of the
-% trajectories which contain the score test
-lla=length(la);
-lwd=2;
-lwdenv=2;
-plot1=plot(Sco(:,1),Sco(:,2:end),'LineWidth',lwd);
-ColorOrd=[ {[0 0 1]};{[0 1 1]}; {[0 1 0]}; {[0.6 0.6 0.6]}; {[0 1 0]}; ];
-ColorOrd=repmat(ColorOrd,4,1);
-
-set(plot1,{'Color'}, ColorOrd(1:lla,:));
-v=axis;
-conflev=0.99;
-quant=sqrt(chi2inv(conflev,1));
-line([v(1),v(2)],[quant,quant],'color','r','LineWidth',lwdenv);
-line([v(1),v(2)],[-quant,-quant],'color','r','LineWidth',lwdenv);
-
-Scop=outpn.Scorep;
-Scon=outpn.Scoren;
-hold('on')
-plotp=plot(Scop(:,1),Scop(:,2:end),'LineWidth',lwd);
-set(plotp,{'LineStyle'},{'--'});
-set(plotp,{'Color'}, ColorOrd(1:lla,:));
-
-plotn=plot(Scon(:,1),Scon(:,2:end),'LineWidth',lwd);
-set(plotn,{'LineStyle'},slin(1:lla));
-set(plotn,{'LineStyle'},{'--'});
-set(plotn,{'Color'}, ColorOrd(1:lla,:));
-
-set(plot1,{'LineStyle'},{'-'});
-text(n*ones(lla,1)+1,Sco(end,2:end)',num2str(la),'FontSize',14);
-xlim([xlim1 xlim2])
-ylim([-12 12])
-set(gca,'FontSize',FontSizeO)
-if prin==1
-    % print to postscript
-    print -depsc figsBS\fanplotoriBS.eps;
-end
-
-
-
-
-%% Prepare the data for figure 11
-booneg=yori<=0;
+%% Create figure 13
+booneg=y<=0;
 la=1.5;
-yneg=normYJ(yori(booneg),[],la,'inverse',false,'Jacobian',false);
+yneg=normYJ(y(booneg),[],la,'inverse',false,'Jacobian',false);
 la=0.5;
-ypos=normYJ(yori(~booneg),[],la,'inverse',false,'Jacobian',false);
-ytra=yori;
+ypos=normYJ(y(~booneg),[],la,'inverse',false,'Jacobian',false);
+ytra=y;
 ytra(booneg)=yneg;
 ytra(~booneg)=ypos;
-outpn=FSRfan(ytra,X,'intercept',1,'plots',0,'family','YJpn','la',1);
+outpn=FSRfan(ytra,X,'intercept',1,'plots',1,'family','YJpn','la',1);
 
-%% Create high quality figure 11
-Sco=outpn.Score;
-la=1;
-% plot the lines associated with the score test lwd = line width of the
-% trajectories which contain the score test
-lla=length(la);
-lwd=2;
-lwdenv=2;
-plot1=plot(Sco(:,1),Sco(:,2:end),'LineWidth',lwd);
-ColorOrd=[ {[0 0 1]};{[0 1 1]}; {[0 1 0]}; {[0.6 0.6 0.6]}; {[0 1 0]}; ];
-ColorOrd=repmat(ColorOrd,4,1);
-
-set(plot1,{'Color'}, ColorOrd(1:lla,:));
-v=axis;
-conflev=0.99;
-quant=sqrt(chi2inv(conflev,1));
-line([v(1),v(2)],[quant,quant],'color','r','LineWidth',lwdenv);
-line([v(1),v(2)],[-quant,-quant],'color','r','LineWidth',lwdenv);
-
-Scop=outpn.Scorep;
-Scon=outpn.Scoren;
-hold('on')
-plotp=plot(Scop(:,1),Scop(:,2:end),'LineWidth',lwd);
-set(plotp,{'LineStyle'},{'--'});
-set(plotp,{'Color'}, ColorOrd(1:lla,:));
-
-plotn=plot(Scon(:,1),Scon(:,2:end),'LineWidth',lwd);
-set(plotn,{'LineStyle'},slin(1:lla));
-set(plotn,{'LineStyle'},{'--'});
-set(plotn,{'Color'}, ColorOrd(1:lla,:));
-
-%set(plot1,{'LineStyle'},{'-'});
-% text(n*ones(lla,1)+1,Sco(end,2:end)',num2str(la),'FontSize',14);
-xlim1=400;
-xlim2=n+12;
-ylim1=-6;
-ylim2=9;
-xlim([xlim1 xlim2])
-ylim([ylim1 ylim2])
-set(gca,'FontSize',FontSizeO)
-title('')
 if prin==1
     % print to postscript
     print -depsc figsBS\fanplottraBS.eps;
 end
 
-%% yXplot in the transformed space (Figure 13)
+
+
+%% yXplot in the transformed space (Figure 14)
 
 out=FSR(ytra,X);
 
@@ -187,25 +55,44 @@ if prin==1
     print -depsc figsBS\yXtraBS.eps;
 end
 
-%% Comparison of the two fits (TABLE 2)
-% Fit in the original scale
-MLfit_without = fitlm(X,yori);
-% Fit in the trasnformed scale after excluding the outliers
-MLfit_notout = fitlm(X,ytra,'Exclude',out.outliers);
 
+%% Comparison of the two fits: create Table 3
+mdl=fitlm(X,y);
+StoreFandR2=[mdl.ModelFitVsNullModel.Fstat;  mdl.Rsquared.Ordinary];
 
-%% Brushing  (FIGURE 12)
+outtra=FSR(ytra,X,'plots',0);
+mdltra=fitlm(X,ytra,'Exclude',outtra.outliers);
+StoreFandR2tra=[mdltra.ModelFitVsNullModel.Fstat;  mdltra.Rsquared.Ordinary];
+
+laP=[1 0.5];
+laN=[1 1.5];
+nobs=[n n-length(outtra.outliers)];
+mis=NaN(1,2);
+tsta=[mdl.Coefficients{:,"tStat"} mdltra.Coefficients{:,"tStat"}];
+FandR2=[StoreFandR2 StoreFandR2tra];
+df=nobs-p;
+
+namrow=["laP"; "laN"; "Number of observations"; "Error d.f. nu";
+    "t_nu values"; "Intercept"; "x"+(1:5)'; "F5,nu for regression"; "R2adj"];
+namcol=["All" "42 deleted"];
+
+data=[laP; laN; nobs;df;mis; tsta; FandR2 ];
+dataT=array2table(data,"RowNames",namrow,"VariableNames",namcol);
+disp('Table 3')
+disp(dataT)
+
+%% Brushing  (FIGURE 14)
 disp('THIS SECTION REQUIRES USER INTERACTION')
-n=length(yori);
+n=length(y);
 [out]=LXS(ytra,X);
 [out]=FSReda(ytra,X,out.bs);
 % Plot minimum deletion residual
 mdrplot(out,'xlimx',[1000 n+1],'ylimy',[1.7 5]);
 % Now, some interactive brushing starting from the monitoring residuals
-% plot. Once a set of trajectories is highlighted in the monitoring residual plot, 
+% plot. Once a set of trajectories is highlighted in the monitoring residual plot,
 % the corresponding units are highlighted in the other plots
 databrush=struct;
-databrush.bivarfit='i1'; 
+databrush.bivarfit='i1';
 databrush.selectionmode='Rect'; % Rectangular selection
 % databrush.persist='off'; % Enable repeated mouse selections
 databrush.Label='on'; % Write labels of trajectories while selecting
@@ -218,3 +105,57 @@ fground.fthresh=100;
 standard=struct;
 standard.xlim=[800 n+1];
 resfwdplot(out,'databrush',databrush,'fground',fground,'standard',standard,'datatooltip','');
+
+
+
+%% Prepare input for Table 4
+outFSR=FSR(ytra,X,'plots',0,'msg',0);
+good=setdiff(1:length(y),outFSR.outliers);
+ytragood=ytra(good);
+Xgood=X(good,:);
+ygood=y(good);
+
+%% Original scale with and without outliers
+outORI=fitlm(X,y);
+R2ori=outORI.Rsquared.Ordinary;
+
+outlm=fitlm(Xgood,ygood);
+R2noout=outlm.Rsquared.Ordinary;
+
+%% Transformed EYJ scale with and without outliers
+outEYJ=fitlm(X,ytra);
+R2eyj=outEYJ.Rsquared.Ordinary;
+
+outEYJgood=fitlm(Xgood,ytragood);
+R2eyjnoout=outEYJgood.Rsquared.Ordinary;
+
+%% Comparison with ACE with and without outliers
+l=[4*ones(p,1); 1];
+outAC= ace(y,X,'l',l);
+R2ACE=outAC.rsq;
+outACnoout=ace(ygood,Xgood,'l',l);
+R2ACnoout=outACnoout.rsq;
+
+
+%%  Comparison with avas:  with and without outliers
+p=size(X,2);
+% l=4 implies do not transform the X variables
+l=4*ones(p,1);
+outAV=avas(y,X,'l',l);
+R2AVAS=outAV.rsq;
+outAVnoout=avas(ygood,Xgood,'l',l);
+R2AVASnoout=outAVnoout.rsq;
+
+%% Create Table 4
+rownam=["Untransformed" "EYJ" "ACE" "AVAS"];
+
+R2all=[R2ori R2noout;
+    R2eyj R2eyjnoout;
+    R2ACE R2ACnoout;
+    R2AVAS R2AVASnoout];
+
+R2t=array2table(R2all,"VariableNames",["Complete" "Outliers deleted"],"RowNames",rownam);
+disp("Table 4")
+disp(R2t)
+
+

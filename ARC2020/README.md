@@ -8,13 +8,13 @@ We analyse data on the performance of investment funds, 99 out of 309 of which r
 
 # MATLAB Code
 
-The code which generates all the figures can be found [here](https://github.com/UniprJRC/FSDApapers/blob/main/ARC2020/figures1.m).
+The code which generates all the figures
 
-Balance sheets dataset figures. [Code](https://github.com/UniprJRC/FSDApapers/blob/main/ARC2020/figuresAR2019InvFunds.m).
 
+Balance sheets dataset Figures. [Code](https://github.com/UniprJRC/FSDApapers/blob/main/ARC2020/figuresAR2019InvFunds.m).
 
 Investment funds data Figures. [Code](https://github.com/UniprJRC/FSDApapers/blob/main/ARC2020/FiguresAR2019BalanceSheets.m).
 
-
+Simulation study [Code](https://github.com/UniprJRC/FSDApapers/blob/main/ARC2020/simstudyAR2019.m).
 
 
