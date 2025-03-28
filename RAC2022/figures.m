@@ -21,6 +21,8 @@ if prin==1
     print -depsc figs\H1.eps
 end
 
+
+
 %% H2 BIC and AGI
 close all
 [out]=fanBIC(outFSRfan);
@@ -29,7 +31,10 @@ if prin==1
     print -depsc figs\H2.eps
 end
 
+%% Create table 1
 
+MMs=array2table(out.mmstop(:,2)',"VariableNames",string(out.mmstop(:,1)),'RowNames',"h(lambda)");
+disp(MMs)
 
 %% LD (Loyalty cards data) BIC and AGI
 close all
