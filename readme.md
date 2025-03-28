@@ -41,3 +41,23 @@ Marco Riani, Anthony C. Atkinson, Francesca Torti, Aldo Corbellini (2023), Robus
 Folder RAVAS
 Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/RAVAS)
 
+---
+
+Ivano Azzini, Domenico Perrotta, Francesca Torti (2023), A practically efficient fixed-pivot selection algorithm and its extensible MATLAB suite. ArXiv, https://doi.org/10.48550/arXiv.2302.05705
+
+Folder Simplesect
+Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/Simpleselect)
+
+---
+
+Luca Insolia, Domenico Perrotta (2023). Fast and robust clustering of general-shaped structures with tk-merge. Submitted.
+
+Folder txmerge2023
+Link to [github page](https://github.com/UniprJRC/FSDApapers/tree/main/txmerge2023)
+
+
+
+
+
+
+
