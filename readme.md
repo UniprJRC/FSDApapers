@@ -73,5 +73,9 @@ Marco Riani, Anthony C. Atkinson, Aldo Corbellini, Gianluca Morelli (2025),Robus
 Link to repo [https://github.com/UniprJRC/2025tobit](https://github.com/UniprJRC/2025tobit)
 
 
+---
+Marco Riani, Anthony C. Atkinson, Aldo Corbellini, Domenico Perrotta, Francesca Torti, Gianluca Morelli (2025),Robust Tobit Regression for Censored Observations Using Extended Box-Cox Transformations, forthcoming in *Stat Methods Appl* (https://github.com/UniprJRC/2025tobit).
+
+Link to repo [https://github.com/UniprJRC/2025tobit](https://github.com/UniprJRC/PCAinteractive)
 
 
