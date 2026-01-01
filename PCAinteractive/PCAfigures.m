@@ -1,0 +1,51 @@
+%% The code below assumes that MATLAB and FSDA toolbox has been installed.
+% In order to get FSDA toolbox from MATLAB
+% Home|Add-Ons|Get Add-Ons and in the 
+% Add-On Explorer Window, in the Search for add-ons textbox type FSDA
+
+%% Check that FSDA is installed
+try
+    load('citiesItaly2024.mat');
+catch ME
+    % Check for an FSDA installation (folder named 'FSDA' on the MATLAB path)
+    if ~exist('FSDA','dir') && isempty(which('FSDA'))
+        error('FSDA:notinstalled','FSDA not found on the MATLAB path. Please install FSDA and add it to the path.');
+    else
+        % FSDA appears present; rethrow original load error for diagnosis
+        rethrow(ME);
+    end
+end
+
+%% Figure 1
+typespm = struct;
+typespm.upper = 'circle';
+spmplot(citiesItaly2024,'order','AOE','typespm',typespm,'colorBackground',true);
+
+%% Figures 2-8
+out = pcaFS(citiesItaly2024,'smartEVchart',true);
+
+%% Figure 9-11
+Xsel=citiesItaly2024(:,{'Employm' 'Protest' 'UrbanFra'});
+out=pcaFS(Xsel);
+
+%% Figures 12-15
+ShapeFile=citiesItaly2024.Properties.UserData{1};
+out=pcaFS(Xsel,'ShapeFile',ShapeFile);
+
+
+%% Figure 16
+LatLong=citiesItaly2024.Properties.UserData{2};
+Latitude=LatLong(:,1);
+Longitude=LatLong(:,2);
+out=biplotAPP(citiesItaly2024,'Latitude',Latitude,'Longitude',Longitude);
+
+
+%% Figure 17
+pcaProjection(Xsel)
+
+%% Figure A1
+load citiesItaly2024.mat
+spmplot(citiesItaly2024);
+
+%% Figure A2-A3
+pcaFS(citiesItaly2024)
