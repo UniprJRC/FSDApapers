@@ -79,8 +79,8 @@ Link to repo [https://github.com/UniprJRC/2025tobit](https://github.com/UniprJRC
 Marco Riani, Anthony C. Atkinson, Aldo Corbellini, Domenico Perrotta, 
 Francesca Torti, Gianluca Morelli  (2026), 
 Interactive Graphics for PCA in Matlab
-*submitted* (https://github.com/UniprJRC/PCAinteractive).
+*submitted* (https://github.com/UniprJRC/FSDApapers/tree/main/PCAinteractive).
 
-Link to repo [https://github.com/UniprJRC/PCAinteractive](https://github.com/UniprJRC/PCAinteractive)
+Link to repo [https://github.com/UniprJRC/FSDApapers/tree/main/PCAinteractive](https://github.com/UniprJRC/FSDApapers/tree/main/PCAinteractive)
 
 
