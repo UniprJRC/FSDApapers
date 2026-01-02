@@ -1,19 +1,17 @@
 %% The code below assumes that MATLAB and FSDA toolbox has been installed.
 % In order to get FSDA toolbox from MATLAB
-% Home|Add-Ons|Get Add-Ons and in the 
+% Home|Add-Ons|Get Add-Ons and in the
 % Add-On Explorer Window, in the Search for add-ons textbox type FSDA
 
 %% Check that FSDA is installed
+if ~exist('FSDA','dir') && isempty(which('FSDA'))
+    error('FSDA:notinstalled','FSDA not found on the MATLAB path. Please install FSDA and add it to the path.');
+end
+
 try
     load('citiesItaly2024.mat');
-catch ME
-    % Check for an FSDA installation (folder named 'FSDA' on the MATLAB path)
-    if ~exist('FSDA','dir') && isempty(which('FSDA'))
-        error('FSDA:notinstalled','FSDA not found on the MATLAB path. Please install FSDA and add it to the path.');
-    else
-        % FSDA appears present; rethrow original load error for diagnosis
-        rethrow(ME);
-    end
+catch     % Check for an FSDA installation (folder named 'FSDA' on the MATLAB path)
+    error('FSDA:FileNotFound','FSDA appears to be present but dataset citiesItaly2024 is not found')
 end
 
 %% Figure 1
