@@ -4,13 +4,14 @@
 % Add-On Explorer Window, in the Search for add-ons textbox type FSDA
 
 %% Check that FSDA is installed
-if ~exist('FSDA','dir') && isempty(which('FSDA'))
+if exist('addFSDA2path','file')~=2
     error('FSDA:notinstalled','FSDA not found on the MATLAB path. Please install FSDA and add it to the path.');
 end
 
 try
     load('citiesItaly2024.mat');
-catch     % Check for an FSDA installation (folder named 'FSDA' on the MATLAB path)
+catch     
+    disp('FSDA version is too old, remove current version and install the latest version')
     error('FSDA:FileNotFound','FSDA appears to be present but dataset citiesItaly2024 is not found')
 end
 
