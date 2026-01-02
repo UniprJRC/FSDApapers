@@ -24,11 +24,9 @@ spmplot(citiesItaly2024,'order','AOE','typespm',typespm,'colorBackground',true);
 %% Figures 2-8
 out = pcaFS(citiesItaly2024,'smartEVchart',true);
 
-%% Figure 9-11
+%% Figures 9-15
 Xsel=citiesItaly2024(:,{'Employm' 'Protest' 'UrbanFra'});
-out=pcaFS(Xsel);
 
-%% Figures 12-15
 ShapeFile=citiesItaly2024.Properties.UserData{1};
 out=pcaFS(Xsel,'ShapeFile',ShapeFile);
 
@@ -37,10 +35,11 @@ out=pcaFS(Xsel,'ShapeFile',ShapeFile);
 LatLong=citiesItaly2024.Properties.UserData{2};
 Latitude=LatLong(:,1);
 Longitude=LatLong(:,2);
-out=biplotAPP(citiesItaly2024,'Latitude',Latitude,'Longitude',Longitude);
+out=pcaFS(citiesItaly2024,'Latitude',Latitude,'Longitude',Longitude);
 
 
 %% Figure 17
+figure
 pcaProjection(Xsel)
 
 %% Figure A1
@@ -48,4 +47,4 @@ load citiesItaly2024.mat
 spmplot(citiesItaly2024);
 
 %% Figure A2-A3
-pcaFS(citiesItaly2024)
+% pcaFS(citiesItaly2024)
