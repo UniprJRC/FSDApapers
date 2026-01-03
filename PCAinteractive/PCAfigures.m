@@ -37,7 +37,9 @@ Longitude=LatLong(:,2);
 out=pcaFS(citiesItaly2024,'Latitude',Latitude,'Longitude',Longitude);
 
 
-%% Figure 17
+%% Figure 17-18
+% please note that to obtain the same appearance of Figures 17 and 18 
+% of the paper you should manually rotate the plots. 
 figure
 pcaProjection(Xsel)
 
